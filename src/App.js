@@ -13,18 +13,66 @@ function App() {
   const [htmlclick, setHtmlClick] = useState(false)
   const [cssclick, setCssClick] = useState(false)
   const [jsclick, setJsClick] = useState(false)
-  const [topHeight,setTopHeight] = useState()
+  const [topHeight, setTopHeight] = useState()
   const topRef = React.createRef();
+  const containerRef = React.createRef();
+  const mouseYPosition = React.useRef(null);
 
-  // React.useEffect(() => {
-  //   if (!topHeight) {
-  //     setTopHeight(topRef.current.clientHeight);
-  //     topRef.current.style.flex = "none";
-  //     return;
-  //   }
-  //   console.log(topHeight)
-  //   topRef.current.style.height = `${topHeight}px`;
-  // },[topHeight])
+  React.useEffect(() => {
+    if (!topHeight) {
+      setTopHeight(topRef.current.clientHeight);
+      topRef.current.style.flex = "none";
+      return;
+    }
+    topRef.current.style.height = `${topHeight}px`;
+    console.log("set topRef", topHeight)
+  }, [topHeight, topRef])
+
+  const onMouseDown = (e) => {
+    mouseYPosition.current = e.clientY
+    console.log("mouse down", mouseYPosition.current)
+  }
+
+  const onMouseMove = (e) => {
+    console.log("mouse move")
+    // console.log(mouseYPosition)
+    // console.log(e)
+    if (!mouseYPosition.current) {
+      return;
+    }
+    var calHeight = topHeight + e.clientY - mouseYPosition.current
+    mouseYPosition.current = e.clientY
+    // console.log("calHeight,  " + calHeight)
+    // console.log(e)
+    if (calHeight <= 0) {
+      return topHeight !==0 && setTopHeight(0)
+    }
+    // console.log("mouse move, containerRef")
+    // console.log(containerRef)
+    if (containerRef.current) {
+      var maxWindowHeight = containerRef.current.clientHeight
+      if (calHeight >= maxWindowHeight) {
+        return topHeight !== maxWindowHeight && setTopHeight(maxWindowHeight);
+      }
+    }
+    setTopHeight(calHeight)
+
+  }
+
+  const onMouseUp = (e) => {
+    mouseYPosition.current = null
+    console.log("mouse up", topHeight)
+  }
+
+  React.useEffect(() => {
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseup", onMouseUp);
+
+    return () => {
+      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseup", onMouseUp);
+    };
+  });
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -42,16 +90,16 @@ function App() {
   }, [html, css, javascript])
 
   useEffect(() => {
-    if(htmlclick && !cssclick && !jsclick){
+    if (htmlclick && !cssclick && !jsclick) {
       setCssExpand(false)
       setJsExpand(false)
     } else if (!htmlclick && cssclick && !jsclick) {
       setHtmlExpand(false)
       setJsExpand(false)
-    }else if(!htmlclick && !cssclick && jsclick){
+    } else if (!htmlclick && !cssclick && jsclick) {
       setHtmlExpand(false)
       setCssExpand(false)
-    }else{
+    } else {
       setHtmlExpand(true)
       setCssExpand(true)
       setJsExpand(true)
@@ -59,10 +107,10 @@ function App() {
       setCssClick(false)
       setJsClick(false)
     }
-  }, [htmlclick,cssclick,jsclick])
+  }, [htmlclick, cssclick, jsclick])
 
   return (
-    <div className="container">
+    <div className="container" ref={containerRef}>
       <div className="top sub-container" ref={topRef}>
         <Editor
           language="xml"
@@ -89,7 +137,8 @@ function App() {
           setClick={setJsClick}
           clicked={jsclick} />
       </div>
-      {/* <div className="resizer-horizontal"></div> */}
+      <div className="resizer-horizontal"
+        onMouseDown={onMouseDown}></div>
       <div className="bottom sub-container">
         <iframe
           srcDoc={srcDoc}

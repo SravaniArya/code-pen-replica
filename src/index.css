@@ -4,20 +4,31 @@
     box-sizing: border-box;
 }
 
+html, body, #app {
+    height: 100%;
+  }
+
 .container{
     display: flex;
     flex-direction: column;
+    height:100%
 }
 
 .sub-container{
-    /* flex:1; */
-    display: flex;    
-    height: 50vh;
+    flex:1;
+    display: flex; 
+    height:100%;
 }
+
+.top{
+    height: 70vh !important; 
+}   
 
 .resizer-horizontal{
     width: 100%;
     height: 10px;
+    cursor:row-resize;
+    background-color: hsl(225,6%,30%);
 }
 
 .code-editor{
@@ -33,10 +44,15 @@
     flex-grow:0
 }
 
-.code-editor.collapsed .CodeMirror-scroll {
+.code-editor.collapsed .CodeMirror-vscrollbar{
     position: absolute;
     overflow: hidden !important;
-  }
+}
+
+/* .code-editor.collapsed .CodeMirror-scroll {
+    position: absolute;
+    overflow: hidden !important;
+  } */
 
 .code-editor.collapsed .CodeMirror-line,.code-editor.collapsed .CodeMirror-linenumber {
     display:none
