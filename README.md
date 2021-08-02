@@ -6,6 +6,9 @@ npm install react-icons
 
 
 
-Notes --
-npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/fontawesome-svg-core
-
+What works :
+- buttons for minimize/maximize
+- double click in between editors to minimize/maximize
+- horizontal dragging slider
+- html, css, js changes reflecting in bottom pane console
+- storing state

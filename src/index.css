@@ -32,9 +32,12 @@ html, body, #app {
 }
 
 .resizer-vertical{
+    /* cursor:col-resize; */
+}
+
+.tap-vertical{
     height: 100%;
     width: 12px;
-    cursor:col-resize;
     background-color: hsl(225,6%,30%);
 }
 
@@ -43,7 +46,6 @@ html, body, #app {
     flex-grow: 1;
     flex-basis: 0;
     flex-direction: column;
-    padding:0.2rem;
     background-color: hsl(225,6%,30%);
 }
 

@@ -10,7 +10,7 @@ function App() {
   const [srcDoc, setSrcDoc] = useState('')
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!topHeight) {
       setTopHeight(topRef.current.clientHeight);
       topRef.current.style.flex = "none";
@@ -51,23 +51,13 @@ function App() {
     console.log("mouse up", topHeight)
   }
 
-  React.useEffect(() => {
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
-
-    return () => {
-      document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseup", onMouseUp);
-    };
-  });
-
   return (
     <div className="container" ref={containerRef}>
       <TopPane 
         topRef={topRef}
         setSrcDoc={setSrcDoc}/>
       <div className="resizer-horizontal"
-        onMouseDown={onMouseDown}></div>
+        onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp}></div>
       <div className="bottom sub-container">
         <iframe
           srcDoc={srcDoc}

@@ -15,7 +15,8 @@ export default function Editor(props) {
         setVal,
         expand,
         setClick,
-        clicked
+        clicked,
+        reference
     } = props
 
     function handleChange(editor, data, value) {
@@ -27,7 +28,7 @@ export default function Editor(props) {
     }
 
     return (
-        <div className={`code-editor ${expand ? '' : 'collapsed'}`}>
+        <div className={`code-editor ${expand ? '' : 'collapsed'}`} ref={reference}>
             <div className="title">
                 {expand?editorName:''}
                 <button className="max-button" onClick={() => clickChange()}>
