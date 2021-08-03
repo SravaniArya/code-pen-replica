@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/code-pen-replica/static/css/main.fbebfe56.chunk.css",
+    "main.js": "/code-pen-replica/static/js/main.0dd2a913.chunk.js",
+    "main.js.map": "/code-pen-replica/static/js/main.0dd2a913.chunk.js.map",
+    "runtime-main.js": "/code-pen-replica/static/js/runtime-main.827b8888.js",
+    "runtime-main.js.map": "/code-pen-replica/static/js/runtime-main.827b8888.js.map",
+    "static/css/2.3ceb25c6.chunk.css": "/code-pen-replica/static/css/2.3ceb25c6.chunk.css",
+    "static/js/2.81390948.chunk.js": "/code-pen-replica/static/js/2.81390948.chunk.js",
+    "static/js/2.81390948.chunk.js.map": "/code-pen-replica/static/js/2.81390948.chunk.js.map",
+    "index.html": "/code-pen-replica/index.html",
+    "static/css/2.3ceb25c6.chunk.css.map": "/code-pen-replica/static/css/2.3ceb25c6.chunk.css.map",
+    "static/css/main.fbebfe56.chunk.css.map": "/code-pen-replica/static/css/main.fbebfe56.chunk.css.map",
+    "static/js/2.81390948.chunk.js.LICENSE.txt": "/code-pen-replica/static/js/2.81390948.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.827b8888.js",
+    "static/css/2.3ceb25c6.chunk.css",
+    "static/js/2.81390948.chunk.js",
+    "static/css/main.fbebfe56.chunk.css",
+    "static/js/main.0dd2a913.chunk.js"
+  ]
+}
